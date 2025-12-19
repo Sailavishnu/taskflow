@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow </title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="image.png">
+</head>
+
+<body>
+
+    <header>
+        <div class="logo"><i class="fas fa-layer-group"></i> TASKFLOW </div>
+        <button class="btn-primary" onclick="openModal('todo')"><i class="fas fa-plus"></i> New Task</button>
+    </header>
+
+    <div class="kanban-board">
+        <div class="column" id="todo" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="column-header">
+                <h2>To Do</h2>
+                <span class="count" id="count-todo">0</span>
+            </div>
+            <div class="task-list" id="list-todo"></div>
+            <button class="add-task-btn" onclick="openModal('todo')">+ Add Card</button>
+        </div>
+
+        <div class="column" id="inprogress" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="column-header">
+                <h2>In Progress</h2>
+                <span class="count" id="count-inprogress">0</span>
+            </div>
+            <div class="task-list" id="list-inprogress"></div>
+            <button class="add-task-btn" onclick="openModal('inprogress')">+ Add Card</button>
+        </div>
+
+        <div class="column" id="done" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="column-header">
+                <h2>Done</h2>
+                <span class="count" id="count-done">0</span>
+            </div>
+            <div class="task-list" id="list-done"></div>
+            <button class="add-task-btn" onclick="openModal('done')">+ Add Card</button>
+        </div>
+    </div>
+
+    <div class="modal" id="taskModal">
+        <div class="modal-content">
+            <h2 style="margin-bottom: 1.5rem">Create Task</h2>
+            <input type="text" id="taskTitle" placeholder="Task Title">
+            <textarea id="taskDesc" rows="3" placeholder="Task Description"></textarea>
+            <select id="taskTag">
+                <option value="DEVELOPMENT">DEVELOPMENT</option>
+                <option value="DESIGN">DESIGN</option>
+                <option value="MARKETING">MARKETING</option>
+                <option value="URGENT">URGENT</option>
+            </select>
+            <div style="display: flex; gap: 10px;">
+                <button class="btn-primary" style="flex: 1" onclick="saveTask()">Add to Board</button>
+                <button onclick="closeModal()"
+                    style="background:none; border:none; color:var(--text-muted); cursor:pointer">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
